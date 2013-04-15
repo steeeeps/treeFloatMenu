@@ -1,0 +1,252 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+    <head>
+        <title>index.html</title>
+        <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+        <meta http-equiv="description" content="this is my page">
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="../treeFloatMenu.css">
+        <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/dojo/1.8.3/dijit/themes/claro/claro.css">
+        <style type="text/css">
+            .dijitTree-float-menu-mod, .dijitTree-float-menu-mod-hover, .dijitTree-float-menu-del, .dijitTree-float-menu-del-hover, .dijitTree-float-menu-add-hover, .dijitTree-float-menu-add {
+                display: inline-block;
+                background: url('icons.png') no-repeat;
+            } .dijitTree-float-menu-mod {
+                background-position: -0px -0px;
+                width: 11px;
+                height: 11px;
+            } .dijitTree-float-menu-mod-hover {
+                background-position: -11px -0px;
+                width: 11px;
+                height: 11px;
+            } .dijitTree-float-menu-del {
+                background-position: -0px -11px;
+                width: 11px;
+                height: 11px;
+            } .dijitTree-float-menu-del-hover {
+                background-position: -11px -11px;
+                width: 11px;
+                height: 11px;
+            } .dijitTree-float-menu-add-hover {
+                background-position: -0px -22px;
+                width: 11px;
+                height: 11px;
+            } .dijitTree-float-menu-add {
+                background-position: -11px -22px;
+                width: 11px;
+                height: 11px;
+            }
+        </style>
+        <script type="text/javascript">
+            var dojoConfig = (function(){
+                var base = location.href.split("/");
+                base.pop();
+                base.pop();
+                base = base.join("/");
+                return {
+                    async: true,
+                    isDebug: false,
+                    parseOnLoad: true,
+                    paths: {
+                        "treeFloatMenu": base + "/treeFloatMenu"
+                    }
+                };
+            })();
+        </script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/dojo/1.8.3/dojo/dojo.js">
+        </script>
+        <script type="text/javascript">
+            require(["dojo/ready", "dojo/_base/window", "dojo/store/Memory", "dijit/tree/ObjectStoreModel", "dijit/Tree", "treeFloatMenu"], function(ready, win, Memory, ObjectStoreModel, Tree){
+            
+                // Create test store, adding the getChildren() method required by ObjectStoreModel
+                var myStore = new Memory({
+                    data: [{
+                        id: 'world',
+                        name: 'The earth',
+                        type: 'planet',
+                        population: '6 billion'
+                    }, {
+                        id: 'AF',
+                        name: 'Africa',
+                        type: 'continent',
+                        population: '900 million',
+                        area: '30,221,532 sq km',
+                        timezone: '-1 UTC to +4 UTC',
+                        parent: 'world'
+                    }, {
+                        id: 'EG',
+                        name: 'Egypt',
+                        type: 'country',
+                        parent: 'AF'
+                    }, {
+                        id: 'KE',
+                        name: 'Kenya',
+                        type: 'country',
+                        parent: 'AF'
+                    }, {
+                        id: 'Nairobi',
+                        name: 'Nairobi',
+                        type: 'city',
+                        parent: 'KE'
+                    }, {
+                        id: 'Mombasa',
+                        name: 'Mombasa',
+                        type: 'city',
+                        parent: 'KE'
+                    }, {
+                        id: 'SD',
+                        name: 'Sudan',
+                        type: 'country',
+                        parent: 'AF'
+                    }, {
+                        id: 'Khartoum',
+                        name: 'Khartoum',
+                        type: 'city',
+                        parent: 'SD'
+                    }, {
+                        id: 'AS',
+                        name: 'Asia',
+                        type: 'continent',
+                        parent: 'world'
+                    }, {
+                        id: 'CN',
+                        name: 'China',
+                        type: 'country',
+                        parent: 'AS'
+                    }, {
+                        id: 'IN',
+                        name: 'India',
+                        type: 'country',
+                        parent: 'AS'
+                    }, {
+                        id: 'RU',
+                        name: 'Russia',
+                        type: 'country',
+                        parent: 'AS'
+                    }, {
+                        id: 'MN',
+                        name: 'Mongolia',
+                        type: 'country',
+                        parent: 'AS'
+                    }, {
+                        id: 'OC',
+                        name: 'Oceania',
+                        type: 'continent',
+                        population: '21 million',
+                        parent: 'world'
+                    }, {
+                        id: 'EU',
+                        name: 'Europe',
+                        type: 'continent',
+                        parent: 'world'
+                    }, {
+                        id: 'DE',
+                        name: 'Germany',
+                        type: 'country',
+                        parent: 'EU'
+                    }, {
+                        id: 'FR',
+                        name: 'France',
+                        type: 'country',
+                        parent: 'EU'
+                    }, {
+                        id: 'ES',
+                        name: 'Spain',
+                        type: 'country',
+                        parent: 'EU'
+                    }, {
+                        id: 'IT',
+                        name: 'Italy',
+                        type: 'country',
+                        parent: 'EU'
+                    }, {
+                        id: 'NA',
+                        name: 'North America',
+                        type: 'continent',
+                        parent: 'world'
+                    }, {
+                        id: 'SA',
+                        name: 'South America',
+                        type: 'continent',
+                        parent: 'world'
+                    }],
+                    getChildren: function(object){
+                        return this.query({
+                            parent: object.id
+                        });
+                    }
+                });
+                
+                // Create the model
+                var myModel = new ObjectStoreModel({
+                    store: myStore,
+                    query: {
+                        id: 'world'
+                    }
+                });
+                
+                // Create the Tree.   Note that all widget creation should be inside a dojo.ready().
+                ready(function(){
+                    var tree = new Tree({
+                        model: myModel
+                    });
+                    tree.placeAt(win.body());
+                    tree.startup();
+                    //
+                    //add float menu
+                    //
+                    tree.floatMenu([{
+                        node: '<span class="dijitTree-float-menu-add" title="增加节点"></span>',
+                        onClick: function(event){
+                            console.log(event.floatNode);
+                            console.log(event.tree);
+                            
+                            var name = event.floatNode.item.name;
+                            alert(name);
+                        }
+                    }, {
+                        node: '<span class="dijitTree-float-menu-mod" title="修改节点"></span>',
+                        onClick: function(event){
+                            console.log(event.floatNode);
+                            console.log(event.tree);
+                            
+                            var name = event.floatNode.item.name;
+                            alert(name);
+                        },
+                        onTreeNodeMouseOver: function(event){
+                            var type = event.floatNode.item.type;
+                            if (type == 'continent') {
+                                event.floatItem.style.display = "none";
+                            }
+                            else {
+                                event.floatItem.style.display = "inline-block";
+                            }
+                        }
+                    }, {
+                        node: '<span class="dijitTree-float-menu-del" title="删除节点"></span>',
+                        onClick: function(event){
+                            console.log(event.floatNode);
+                            console.log(event.tree);
+                            
+                            var name = event.floatNode.item.name;
+                            alert(name);
+                        },
+                        onTreeNodeMouseOver: function(event){
+                            var type = event.floatNode.item.type;
+                            if (type == 'planet') {
+                                event.floatItem.style.display = "none";
+                            }
+                            else {
+                                event.floatItem.style.display = "inline-block";
+                            }
+                        }
+                    }]);
+                });
+            });
+        </script>
+    </head>
+    <body class="claro">
+        dijit tree float menu test
+        <br>
+    </body>
+</html>

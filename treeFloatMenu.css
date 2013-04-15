@@ -1,0 +1,39 @@
+ .dijitTree-float-menu {
+    position: absolute;
+    float: right;
+    display: none;
+    width: auto;
+    height: 11px;
+    line-height: 11px;
+    padding: 0px 0px;
+    background: transparent;
+    right: 10px;
+	top:-100px;
+}  .dijitTree-float-menu-item {
+    display: inline-block;
+    width: 11px;
+    height: 11px;
+    margin: 0px 5px !important;
+    color: #fff !important;
+    padding: 0 0 !important;
+    border: none !important;
+	cursor:pointer;
+}
+ .dijitTree-float-menu-add{
+	background:url(../../images/skins/tree_add.png);
+}
+ .dijitTree-float-menu-del{
+	background:url(../../images/skins/tree_del.png);
+}
+ .dijitTree-float-menu-mod{
+	background:url(../../images/skins/tree_mod.png);
+}
+ .dijitTree-float-menu-add:hover{
+	background:url(../../images/skins/tree_add_hover.png);
+}
+ .dijitTree-float-menu-del:hover{
+	background:url(../../images/skins/tree_del_hover.png);
+}
+ .dijitTree-float-menu-mod:hover{
+	background:url(../../images/skins/tree_mod_hover.png);
+}

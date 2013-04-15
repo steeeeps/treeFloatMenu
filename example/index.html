@@ -8,14 +8,14 @@
         <link rel="stylesheet" type="text/css" href="../treeFloatMenu.css">
         <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/dojo/1.8.3/dijit/themes/claro/claro.css">
         <style type="text/css">
-            .dijitTree-float-menu-mod, .dijitTree-float-menu-mod-hover, .dijitTree-float-menu-del, .dijitTree-float-menu-del-hover, .dijitTree-float-menu-add-hover, .dijitTree-float-menu-add {
+            .dijitTree-float-menu-mod, .dijitTree-float-menu-mod:hover, .dijitTree-float-menu-del, .dijitTree-float-menu-del:hover, .dijitTree-float-menu-add:hover, .dijitTree-float-menu-add {
                 display: inline-block;
                 background: url('icons.png') no-repeat;
             } .dijitTree-float-menu-mod {
                 background-position: -0px -0px;
                 width: 11px;
                 height: 11px;
-            } .dijitTree-float-menu-mod-hover {
+            } .dijitTree-float-menu-mod:hover {
                 background-position: -11px -0px;
                 width: 11px;
                 height: 11px;
@@ -23,11 +23,11 @@
                 background-position: -0px -11px;
                 width: 11px;
                 height: 11px;
-            } .dijitTree-float-menu-del-hover {
+            } .dijitTree-float-menu-del:hover {
                 background-position: -11px -11px;
                 width: 11px;
                 height: 11px;
-            } .dijitTree-float-menu-add-hover {
+            } .dijitTree-float-menu-add:hover {
                 background-position: -0px -22px;
                 width: 11px;
                 height: 11px;
@@ -212,15 +212,6 @@
                             
                             var name = event.floatNode.item.name;
                             alert(name);
-                        },
-                        onTreeNodeMouseOver: function(event){
-                            var type = event.floatNode.item.type;
-                            if (type == 'continent') {
-                                event.floatItem.style.display = "none";
-                            }
-                            else {
-                                event.floatItem.style.display = "inline-block";
-                            }
                         }
                     }, {
                         node: '<span class="dijitTree-float-menu-del" title="删除节点"></span>',
